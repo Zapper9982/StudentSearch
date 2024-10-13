@@ -6,7 +6,7 @@ import { AppShell, Burger, ColorSchemeScript, Group, MantineProvider, Skeleton }
 import '@mantine/core/styles.css';
 import './globals.css'
 import { useDisclosure } from '@mantine/hooks';
-// import { NavbarSearch } from './Components/NavbarSearch'; 
+import { NavbarSearch } from './Components/Navbar'; 
 // export const metadata = {
 //   title: 'My Mantine app',
 //   description: 'I have followed setup instructions carefully',
@@ -42,8 +42,8 @@ export default function RootLayout({
         </Group>
       </AppShell.Header>
       <AppShell.Navbar>
-        {/* <NavbarSearch/> */}
-        Navbar
+        <NavbarSearch/>
+       
       </AppShell.Navbar>
       <AppShell.Main>{children}</AppShell.Main>
     </AppShell>
