@@ -1,15 +1,13 @@
-// Mark the component to be client-side
 "use client"; 
 
-import { useRouter } from 'next/navigation'; // For Next.js 13 App Directory
-import { useState } from 'react';
+import { useRouter } from 'next/navigation'; 
 import { Center, Container, Button, Text } from '@mantine/core';
+import { useState } from 'react';
 
 export default function Home() {
   const router = useRouter(); // Using useRouter from next/navigation
   const [user, setUser] = useState("");
 
-  // Fetch user details
   async function getUser() {
     try {
       const res = await fetch("http://localhost:6969/user");
@@ -52,11 +50,6 @@ export default function Home() {
         <Container
           size="sm"
           p="lg"
-          sx={{
-            backgroundColor: "rgba(255, 255, 255, 0.9)",
-            borderRadius: "12px",
-            boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
-          }}
         >
           <Center>
             <h1>📎 Student <span className="blue">Search</span></h1>
@@ -78,9 +71,6 @@ export default function Home() {
               Search Students 📚
             </Button>
           </Center>
-
-  
-          
         </Container>
       </div>
     </>

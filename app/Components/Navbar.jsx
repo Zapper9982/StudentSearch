@@ -12,6 +12,7 @@ import {
   import { IconBulb, IconUser, IconCheckbox, IconSearch, IconPlus } from '@tabler/icons-react';
 //   import { UserButton } from '../UserButton/UserButton';
   import classes from './Navbar.module.css';
+  import Dark from "./Dark";
   
   const links = [
     { icon: IconBulb, label: 'Activity', notifications: 3 },
@@ -91,6 +92,7 @@ import {
           </Group>
           <div className={classes.collections}>{collectionLinks}</div>
         </div>
+        <Dark/>
       </nav>
     );
   }
