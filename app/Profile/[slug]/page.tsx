@@ -213,7 +213,7 @@ export default function Profile({ params: { slug } }: ProfileProps) {
                   Mail
                 </Text>
                 <Text fz={"h3"} fw={600}>
-                  {StudentDetails.RollNo + "@gmail.com"|| "N/A"}
+                  {StudentDetails.RollNo + "@iiitdmj.ac.in" || "N/A"}
                 </Text>
               </Stack>
               <Stack>

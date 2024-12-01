@@ -34,7 +34,7 @@ export default function AuthenticationTitle() {
       //   console.log(data);
       localStorage.setItem("token", data[0]["token"]);
       localStorage.setItem("roll", username);
-      window.location.href = "/Search";
+      window.location.href = "/";
     }
   }
 

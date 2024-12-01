@@ -47,7 +47,7 @@ export default function RootLayout({
           <Burger opened={desktopOpened} onClick={toggleDesktop} visibleFrom="sm" size="sm" />
           <Text size="xl" fw={700}>Student Search</Text>
           {user ? (
-            <Button variant='light' style={{position:"absolute",right:"10px"}} component='a' href='/Account/edit'>
+            <Button variant='light' style={{position:"absolute",right:"10px"}} component='a' href={`/Profile/`+user}>
               Welcome {user}
             </Button>
           ) : (

@@ -14,13 +14,12 @@ import {
   import classes from './Navbar.module.css';
   import Dark from "./Dark";
 
-const roll = localStorage.getItem("roll");
   
   
   const links = [
     { icon: IconHomeFilled, label: 'Home Page' , links: '/'},
     { icon: IconSearch, label: 'Search Students', links: '/Search' },
-    { icon: IconUser, label: 'Profile', links: `/Profile/${roll}` },
+    // { icon: IconUser, label: 'Profile', links: `/Profile/${}` },
     { icon: IconPencil, label: ' Edit Profile', links: '/Account/edit' },
     
   ];
