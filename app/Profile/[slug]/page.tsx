@@ -189,6 +189,8 @@ export default function Profile({ params: { slug } }: ProfileProps) {
             withBorder
           >
             <Stack>
+              {" "}
+              {/* Reduced spacing */}
               <Stack>
                 <Text c="dimmed" fz={"h5"} fw={600}>
                   Name
@@ -199,10 +201,11 @@ export default function Profile({ params: { slug } }: ProfileProps) {
               </Stack>
               <Stack>
                 <Text c="dimmed" fz={"h5"} fw={600}>
-                  Dob
+                  DOB
                 </Text>
                 <Text fz={"h3"} fw={600}>
-                  {StudentDetails.DOB || "N/A"}
+                  {new Date(StudentDetails.DOB).toLocaleDateString("en-US") ||
+                    "N/A"}
                 </Text>
               </Stack>
               <Stack>
@@ -210,7 +213,23 @@ export default function Profile({ params: { slug } }: ProfileProps) {
                   Mail
                 </Text>
                 <Text fz={"h3"} fw={600}>
-                  {StudentDetails.Email || "N/A"}
+                  {StudentDetails.RollNo + "@gmail.com"|| "N/A"}
+                </Text>
+              </Stack>
+              <Stack>
+                <Text c="dimmed" fz={"h5"} fw={600}>
+                  Blood Group
+                </Text>
+                <Text fz={"h3"} fw={600}>
+                  {StudentDetails.BloodGroup || "N/A"}
+                </Text>
+              </Stack>
+              <Stack>
+                <Text c="dimmed" fz={"h5"} fw={600}>
+                  City
+                </Text>
+                <Text fz={"h3"} fw={600}>
+                  {StudentDetails.Hometown || "N/A"}
                 </Text>
               </Stack>
             </Stack>
