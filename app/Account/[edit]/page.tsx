@@ -10,10 +10,10 @@ import {
   Stack,
   Text,
 } from "@mantine/core";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Router from "next/router";
 import { DatePickerInput } from "@mantine/dates";
-import '@mantine/dates/styles.css';
+import "@mantine/dates/styles.css";
 
 interface ProfileProps {
   params: {
@@ -21,28 +21,65 @@ interface ProfileProps {
   };
 }
 
-export default function EditProfile({ params: { slug } }: ProfileProps) {
-  const roll = slug;
+export default function EditProfile() {
+  const [roll, setRoll] = useState("");
   const [Name, setName] = useState("John Doe");
   const [Branch, setBranch] = useState("Computer Science");
   const [Dob, setDob] = useState<Date | null>(null);
   const [Phone, setPhone] = useState("1234567890");
   const [Mail, setMail] = useState("john.doe@example.com");
+  const [hostel, setHostel] = useState("Vivekananda Hostel");
 
-  const handleSave = () => {
-    console.log("Profile updated:", { Name, Branch, Dob, Phone, Mail });
-    Router.push("/profile/" + roll);
-  };
+  async function handleSave() {
+    const response = await fetch("http://localhost:5000/student/update", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        rollno: roll,
+        name: Name,
+        branch: Branch,
+        dob: Dob?.toISOString(),
+        phone: Phone,
+        mail: Mail,
+        hostel_name: hostel,
+        token: localStorage.getItem("token"),
+      }),
+    });
+    const data = await response.json();
+    if (!data["error"]) {
+      // Router.back();
+    }
+  }
+
+  useEffect(() => {
+    let rollno = localStorage.getItem("roll");
+    setRoll(rollno ?? "");
+    const fetchStudentData = async () => {
+      try {
+        const response = await fetch(
+          `http://localhost:5000/student/details?rollno=${rollno}`
+        );
+        const data = await response.json();
+        let stdata = data["StudentDetails"];
+        setName(stdata["Name"]);
+        setBranch(stdata["Branch"]);
+        setDob(new Date(stdata["DOB"]));
+        setPhone(stdata["Phone"]);
+        setMail(stdata["Mail"]);
+        setHostel(stdata["hostel_name"]);
+      } catch (error) {
+        console.error("Error fetching student data:", error);
+      }
+    };
+
+    fetchStudentData();
+  }, []);
 
   return (
     <>
-      <Container
-        w={"100%"}
-        h={"80vh"}
-        maw={"90%"}
-        mt={"2%"}
-        p={0}
-      >
+      <Container w={"100%"} h={"80vh"} maw={"90%"} mt={"2%"} p={0}>
         <Group
           align="stretch"
           w={"100%"}
@@ -51,11 +88,13 @@ export default function EditProfile({ params: { slug } }: ProfileProps) {
           style={{ overflow: "hidden" }}
         >
           {/* Left Side */}
-          <Stack
-            w={"25%"}
-            h={"100%"}
-          >
-            <ProfileCard />
+          <Stack w={"25%"} h={"100%"}>
+            <ProfileCard
+              branch={Branch}
+              roll={roll}
+              name={Name}
+              year="Second"
+            />
             <Card
               h={150}
               radius={"md"}
@@ -150,7 +189,6 @@ export default function EditProfile({ params: { slug } }: ProfileProps) {
                   Date of Birth
                 </Text>
                 <DatePickerInput
-                  
                   placeholder="Pick date"
                   value={Dob}
                   onChange={setDob}
@@ -173,13 +211,13 @@ export default function EditProfile({ params: { slug } }: ProfileProps) {
 
                 {/* Email Field */}
                 <Text c="dimmed" fz={"h5"} fw={600}>
-                  Email
+                  Hostel
                 </Text>
                 <Input
-                  value={Mail}
-                  onChange={(e) => setMail(e.target.value)}
+                  value={hostel}
+                  onChange={(e) => setHostel(e.target.value)}
                   size="lg"
-                  placeholder="Enter your email"
+                  placeholder="Enter your Hostel"
                   w="100%"
                   style={{ height: "50px" }} // Set consistent height
                 />

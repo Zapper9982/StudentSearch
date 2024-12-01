@@ -52,7 +52,7 @@ export default function UserCard({ name, phone, mail, rollno }: UserCardProps) {
           >
             Mail
           </Button>
-          <Button variant="light" component="a" href={"/profile/" + rollno}>
+          <Button variant="light" component="a" href={"/Profile/" + rollno}>
             Profile
           </Button>
         </Stack>
