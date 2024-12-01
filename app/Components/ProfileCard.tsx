@@ -1,11 +1,23 @@
-import { Avatar, Button, Card, Group, Stack, Text } from "@mantine/core";
+import { Avatar, Card, Stack, Text } from "@mantine/core";
 import classes from "./ProfileCard.module.css";
 
+interface ProfileCardProps {
+  branch: string;
+  roll: string;
+  name: string;
+  year: string;
+  avatarUrl?: string;
+  coverImageUrl?: string;
+}
+
 export function ProfileCard({
-  branch = "Computer Science",
-  roll = "23BCS069",
-  name = "om omomomo",
-}) {
+  branch,
+  roll,
+  name,
+  year,
+  avatarUrl = "https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-9.png",
+  coverImageUrl = "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80",
+}: ProfileCardProps) {
   return (
     <Card
       withBorder
@@ -18,12 +30,13 @@ export function ProfileCard({
       <Card.Section
         h={"40%"}
         style={{
-          backgroundImage:
-            "url(https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=500&q=80)",
+          backgroundImage: `url(${coverImageUrl})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
         }}
       />
       <Avatar
-        src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-9.png"
+        src={avatarUrl}
         size={80}
         style={{ aspectRatio: "1/1" }}
         radius={80}
@@ -56,7 +69,7 @@ export function ProfileCard({
         </div>
         <div>
           <Text ta="center" fz="lg" fw={500}>
-            Second Year
+            {year}
           </Text>
           <Text ta="center" fz="sm" c="dimmed" lh={1}>
             Year

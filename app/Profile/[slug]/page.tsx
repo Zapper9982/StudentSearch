@@ -47,13 +47,22 @@ export default function Profile({ params: { slug } }: ProfileProps) {
 
   if (loading) {
     return (
-      <Container w={"100%"} mt={"5%"} maw={"60%"}>
+      <Container
+        w={"100%"}
+        mt={"5%"}
+        maw={"60%"}
+        style={{ overflow: "hidden", height: "100vh" }}
+      >
         <Group w={"100%"} gap={"2%"}>
-          <Stack w={"40%"} h={"70svh"}>
-            <ProfileCard />
+          <Stack w={"40%"} h={"70svh"} style={{ overflowY: "auto" }}>
+            <ProfileCard branch={""} roll={""} name={""} year={""} />
             <Card h={150} radius={"md"} withBorder bg={"transparent"} />
           </Stack>
-          <Stack flex={1} style={{ flexGrow: 1 }} h={"70svh"}>
+          <Stack
+            flex={1}
+            style={{ flexGrow: 1, overflowY: "auto" }}
+            h={"70svh"}
+          >
             <Card
               h={100}
               radius="md"
@@ -80,7 +89,12 @@ export default function Profile({ params: { slug } }: ProfileProps) {
 
   if (!studentData) {
     return (
-      <Container w={"100%"} mt={"5%"} maw={"60%"}>
+      <Container
+        w={"100%"}
+        mt={"5%"}
+        maw={"60%"}
+        style={{ overflow: "hidden", height: "100vh" }}
+      >
         <Text c="red" fz={"xl"} fw={700}>
           Student Not Found
         </Text>
@@ -92,17 +106,31 @@ export default function Profile({ params: { slug } }: ProfileProps) {
     studentData;
 
   return (
-    <Container w={"100%"} mt={"5%"} maw={"60%"}>
+    <Container
+      w={"100%"}
+      mt={"5%"}
+      maw={"60%"}
+      style={{ overflowY: "auto", height: "100vh" }}
+    >
       <Group w={"100%"} gap={"2%"}>
-        <Stack w={"40%"} h={"70svh"}>
-          <ProfileCard />
+        <Stack
+          w={"40%"}
+          h={"70svh"}
+          style={{ overflowY: "auto", paddingRight: 10 }}
+        >
+          <ProfileCard
+            branch={"Computer Science And Engineering"}
+            roll={StudentDetails.RollNo}
+            name={StudentDetails.Name}
+            year={"2nd"}
+          />
           <Card
             h={150}
             radius={"md"}
             withBorder
             bg={"transparent"}
-            display={"flex"}
             style={{
+              display: "flex",
               gap: 20,
               justifyContent: "center",
               alignItems: "center",
@@ -128,28 +156,40 @@ export default function Profile({ params: { slug } }: ProfileProps) {
             </Button>
           </Card>
         </Stack>
-        <Stack flex={1} style={{ flexGrow: 1 }} h={"70svh"}>
+        <Stack
+          flex={1}
+          style={{ flexGrow: 1, overflowY: "auto", paddingRight: 10 }}
+          h={"70svh"}
+        >
           <Card
             h={100}
             radius="md"
             withBorder
-            style={{ display: "flex", justifyContent: "center" }}
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              overflow: "hidden",
+            }}
             bg={"transparent"}
           >
             <Text fz={"h2"} fw={800} p={20}>
-              Get to know {StudentDetails.Rollno}!
+              Get to know {StudentDetails.RollNo}!
             </Text>
           </Card>
 
           <Card
             flex={1}
-            style={{ flexGrow: 1 }}
+            style={{
+              flexGrow: 1,
+              overflowY: "auto",
+              padding: 20,
+            }}
             radius="md"
             bg={"transparent"}
             withBorder
           >
             <Stack>
-              <Stack p={20}>
+              <Stack>
                 <Text c="dimmed" fz={"h5"} fw={600}>
                   Name
                 </Text>
@@ -157,7 +197,7 @@ export default function Profile({ params: { slug } }: ProfileProps) {
                   {StudentDetails.Name}
                 </Text>
               </Stack>
-              <Stack p={20}>
+              <Stack>
                 <Text c="dimmed" fz={"h5"} fw={600}>
                   Dob
                 </Text>
@@ -165,7 +205,7 @@ export default function Profile({ params: { slug } }: ProfileProps) {
                   {StudentDetails.DOB || "N/A"}
                 </Text>
               </Stack>
-              <Stack p={20}>
+              <Stack>
                 <Text c="dimmed" fz={"h5"} fw={600}>
                   Mail
                 </Text>
@@ -175,7 +215,13 @@ export default function Profile({ params: { slug } }: ProfileProps) {
               </Stack>
             </Stack>
           </Card>
-          <Card h={250} radius="md" withBorder bg={"transparent"}>
+          <Card
+            h={250}
+            radius="md"
+            withBorder
+            bg={"transparent"}
+            style={{ overflowY: "auto" }}
+          >
             <Stack>
               <Text fz={18} fw={600}>
                 Position of Responsibilities
